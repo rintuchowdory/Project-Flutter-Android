@@ -13,7 +13,7 @@
     pkgs.pkg-config
     pkgs.google-chrome
     pkgs.gtk3
-    pkgs.mesa-utils
+    pkgs.mesa_utils
   ];
   # Sets environment variables in the workspace
   env = {};
