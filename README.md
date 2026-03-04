@@ -32,6 +32,7 @@ Run these commands in your terminal:
 ```bash
 git add .
 git commit -m "Final production build"
+git remote remove origin
 git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
 git push -u origin main
 ```
