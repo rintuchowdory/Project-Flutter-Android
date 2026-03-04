@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "Abstract purple and blue digital waves representing AI creativity.",
+      "imageUrl": "https://picsum.photos/seed/textforge-hero/1200/600",
+      "imageHint": "abstract digital waves"
+    },
+    {
+      "id": "feature-generation",
+      "description": "Close up of a keyboard with glowing purple accents.",
+      "imageUrl": "https://picsum.photos/seed/textforge-gen/600/400",
+      "imageHint": "glowing keyboard"
+    }
+  ]
 }
