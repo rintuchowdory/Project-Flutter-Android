@@ -24,19 +24,19 @@ By default, Firebase will give you a professional subdomain like:
 
 ## ☁️ Publishing (Step-by-Step for Free Users)
 
-Since automatic workspace sync may require a paid plan, use this **Manual Method** to stay on the free plan:
+If you get an error saying your push was **rejected**, use the **Force Push** command below to sync your repository.
 
-### Step A: Push to GitHub
-Run these commands in your terminal to update your repository (last updated 3 weeks ago):
+### Step A: Push to GitHub (The "Force" Method)
+Run these commands in your terminal to overwrite the old repository with your new AI app:
 
 ```bash
 git add .
 git commit -m "Complete AI TextForge build with Firebase and Gemini"
 git remote remove origin
 git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
-git push -u origin main
+git push -f origin main
 ```
-*Note: When prompted for your password, use your GitHub Personal Access Token (`ghp_...`).*
+*Note: When prompted for your password, use your GitHub Personal Access Token (`ghp_...`). The `-f` flag tells Git to force the update.*
 
 ### Step B: Connect to Firebase
 1. Open the [Firebase Console](https://console.firebase.google.com/).
