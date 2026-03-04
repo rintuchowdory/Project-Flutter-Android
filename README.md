@@ -27,11 +27,11 @@ By default, Firebase will give you a professional subdomain like:
 Since automatic workspace sync may require a paid plan, use this **Manual Method** to stay on the free plan:
 
 ### Step A: Push to GitHub
-Run these commands in your terminal:
+Run these commands in your terminal to update your repository (last updated 3 weeks ago):
 
 ```bash
 git add .
-git commit -m "Final production build"
+git commit -m "Complete AI TextForge build with Firebase and Gemini"
 git remote remove origin
 git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
 git push -u origin main
