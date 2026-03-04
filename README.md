@@ -19,14 +19,19 @@ npm run genkit:dev
 ```
 This opens the Genkit developer UI where you can test different inputs for your text generation logic.
 
-## ⬆️ How to Push Changes to GitHub
+## ⬆️ How to Push to GitHub
 
-Whenever you make changes and want to update your live app (via App Hosting), run:
+To save your code to GitHub for the first time:
+
+1. Create a new repository on GitHub (e.g., `ai-textforge`).
+2. Run these commands:
 
 ```bash
 git add .
-git commit -m "Describe your changes here"
-git push
+git commit -m "Setup AI TextForge with Firebase and Genkit"
+git branch -M main
+git remote add origin https://github.com/rintuchowdory/ai-textforge.git
+git push -u origin main
 ```
 
 ## 🛠 Features
