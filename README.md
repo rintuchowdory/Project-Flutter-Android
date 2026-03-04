@@ -19,6 +19,16 @@ npm run genkit:dev
 ```
 This opens the Genkit developer UI where you can test different inputs for your text generation logic.
 
+## ⬆️ How to Push Changes to GitHub
+
+Whenever you make changes and want to update your live app (via App Hosting), run:
+
+```bash
+git add .
+git commit -m "Describe your changes here"
+git push
+```
+
 ## 🛠 Features
 
 - **AI Text Generation**: Powered by Google Gemini via Genkit.
@@ -33,7 +43,7 @@ To publish your app for free using the Firebase Spark plan:
 1. **Enable Authentication**: Go to the [Firebase Console](https://console.firebase.google.com/), navigate to **Authentication**, and enable the **Anonymous** provider.
 2. **Enable Firestore**: Go to **Cloud Firestore** in the console and click **Create Database**. Start in "Production Mode" but ensure your security rules allow the path `/users/{userId}/ai_interactions/{id}` (these rules are already in your `firestore.rules` file!).
 3. **Deploy with App Hosting**:
-   - Push your code to a GitHub repository.
+   - Push your code to a GitHub repository using the commands above.
    - In the Firebase Console, go to **App Hosting**.
    - Click **Get Started** and connect your GitHub repo.
    - Firebase will handle the build and deployment automatically.
