@@ -21,26 +21,18 @@ This opens the Genkit developer UI where you can test different inputs for your 
 
 ## ⬆️ How to Push to GitHub
 
-To save your code to GitHub for the first time:
+To save your code to GitHub and prepare for deployment:
 
 1. Create a new repository on GitHub named `ai-textforge`.
 2. Run these commands in your terminal:
 
 ```bash
 git add .
-git commit -m "Setup AI TextForge with Firebase and Genkit"
-git branch -M main
+git commit -m "Complete AI TextForge implementation"
 git remote add origin https://github.com/rintuchowdory/ai-textforge.git
 git push -u origin main
 ```
-*Note: Use your GitHub Token as the password if prompted.*
-
-## 🛠 Features
-
-- **AI Text Generation**: Powered by Google Gemini via Genkit.
-- **Anonymous Auth**: Users are automatically signed in anonymously to save their work.
-- **Firestore Integration**: Generation history is saved in real-time to your Firebase database.
-- **Responsive Design**: Built with Tailwind CSS and ShadCN UI.
+*Note: Use your GitHub Token as the password when prompted.*
 
 ## ☁️ Publishing (The Free Method)
 
@@ -54,9 +46,9 @@ To publish your app for free using the Firebase Spark plan:
    - Click **Get Started** and connect your GitHub repo.
    - Firebase will handle the build and deployment automatically.
 
-## 📂 Project Structure
+## 🛠 Features
 
-- `src/app`: Next.js pages and layouts.
-- `src/ai`: Genkit flows and AI logic.
-- `src/firebase`: Firebase configuration and client-side hooks.
-- `src/components`: Reusable UI components.
+- **AI Text Generation**: Powered by Google Gemini via Genkit.
+- **Anonymous Auth**: Users are automatically signed in anonymously to save their work.
+- **Firestore Integration**: Generation history is saved in real-time to your Firebase database.
+- **Responsive Design**: Built with Tailwind CSS and ShadCN UI.

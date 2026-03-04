@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { generateAIText } from "@/ai/flows/ai-text-generation-flow";
-import { Sparkles, Loader2, Copy, Trash2, Send, Download, History, Clock } from "lucide-react";
+import { Sparkles, Loader2, Copy, Trash2, Send, Clock, History } from "lucide-react";
 import { useUser, useFirestore, useMemoFirebase, useCollection } from "@/firebase";
 import { collection, query, orderBy, limit, doc } from "firebase/firestore";
 import { setDocumentNonBlocking, initiateAnonymousSignIn } from "@/firebase";
@@ -82,12 +82,12 @@ export default function TextGenerationPage() {
 
       toast({
         title: "Forging complete",
-        description: "Your AI-generated text is ready and saved to your history.",
+        description: "Your text is ready and saved to history.",
       });
     } catch (error) {
       toast({
         title: "Forging failed",
-        description: "An error occurred while generating text. Please try again.",
+        description: "An error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -98,18 +98,14 @@ export default function TextGenerationPage() {
   const handleCopy = (textToCopy: string) => {
     navigator.clipboard.writeText(textToCopy);
     toast({
-      title: "Copied to clipboard",
-      description: "Text is ready to be pasted elsewhere.",
+      title: "Copied",
+      description: "Text copied to clipboard.",
     });
   };
 
   const handleClear = () => {
     setPrompt("");
     setResult("");
-    toast({
-      title: "Workspace cleared",
-      description: "Ready for a new project.",
-    });
   };
 
   useEffect(() => {
@@ -182,12 +178,10 @@ export default function TextGenerationPage() {
               {(result || isGenerating) && (
                 <Card className="border-secondary/20 bg-card/40 backdrop-blur shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-                    <div>
-                      <CardTitle className="font-headline flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-secondary" />
-                        Forged Output
-                      </CardTitle>
-                    </div>
+                    <CardTitle className="font-headline flex items-center gap-2 text-secondary">
+                      <Sparkles className="w-5 h-5" />
+                      Forged Output
+                    </CardTitle>
                     {result && !isGenerating && (
                       <Button variant="outline" size="icon" onClick={() => handleCopy(result)}>
                         <Copy className="w-4 h-4" />
@@ -219,7 +213,6 @@ export default function TextGenerationPage() {
             </div>
           </div>
 
-          {/* Sidebar History */}
           <div className="space-y-6">
             <Card className="border-muted bg-card/20 backdrop-blur">
               <CardHeader className="pb-3">
@@ -268,7 +261,7 @@ export default function TextGenerationPage() {
       </main>
 
       <footer className="border-t py-8 bg-card/10 mt-auto">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-medium">
           Securely forged with Firebase & Gemini
         </div>
       </footer>
