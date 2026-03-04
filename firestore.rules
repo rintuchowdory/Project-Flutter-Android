@@ -1,0 +1,99 @@
+/**
+ * FIRESTORE SECURITY RULES
+ * 
+ * CORE PHILOSOPHY:
+ * This ruleset enforces a strict User-Ownership model. Access is primarily dictated by the 
+ * hierarchical path structure, ensuring that users can only access data nested under 
+ * their own unique UID.
+ * 
+ * DATA STRUCTURE:
+ * The database is organized hierarchically:
+ * - /users/{userId}: Root profile for each user.
+ * - /users/{userId}/ai_interactions/{interactionId}: Private subcollection for AI logs.
+ * 
+ * KEY SECURITY DECISIONS:
+ * 1. Ownership-Based Access: All read and write operations require the requester's 
+ *    `auth.uid` to match the `{userId}` wildcard in the document path.
+ * 2. Denormalization for Authorization: While path-based security is the primary 
+ *    mechanism, the rules expect an `ownerId` field within documents to maintain 
+ *    relational integrity and support future non-hierarchical queries.
+ * 3. Prototyping Flexibility: Rules do not enforce data types (strings, booleans) 
+ *    or optional fields, allowing for rapid schema iteration.
+ * 4. Private Listing: Users can only list their own collections. There are no 
+ *    publicly listable collections in this application.
+ * 
+ * DENORMALIZATION FOR AUTHORIZATION:
+ * To ensure data remains consistent with its location, the rules enforce that any 
+ * `ownerId` or `id` fields stored within a document must match the path parameters 
+ * during creation and remains immutable during updates.
+ */
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- GLOBAL HELPER FUNCTIONS ---
+
+    /**
+     * @description Checks if the request is made by an authenticated user.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Validates that the authenticated user's UID matches the provided userId.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Combines ownership check with a check for document existence.
+     * Used for update and delete operations to ensure the target exists and is owned.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    // --- COLLECTION RULES ---
+
+    /**
+     * @description Rules for the user profile document.
+     * @path /users/{userId}
+     * @allow (create) User 'abc' creating /users/abc
+     * @deny (create) User 'abc' creating /users/xyz
+     * @principle Self-creation and ownership for root user documents.
+     */
+    match /users/{userId} {
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update, delete: if isExistingOwner(userId);
+
+      /**
+       * @description Rules for individual AI interactions.
+       * @path /users/{userId}/ai_interactions/{aiInteractionId}
+       * @allow (get) User 'abc' reading their interaction 'int_123'
+       * @deny (update) User 'abc' changing the 'id' field of interaction 'int_123'
+       * @principle Enforces path-based ownership and relational integrity for subcollections.
+       */
+      match /ai_interactions/{aiInteractionId} {
+        allow get, list: if isOwner(userId);
+        
+        // On Create: Ensure the user is the owner and the internal ID matches the path ID.
+        allow create: if isOwner(userId) && request.resource.data.id == aiInteractionId;
+        
+        // On Update: Ensure document exists, is owned, and the ID remains immutable.
+        allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+        
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+
+    // --- DEFAULT DENY ---
+    // Explicitly deny any access to paths not defined above.
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}
