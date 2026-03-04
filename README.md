@@ -25,31 +25,32 @@ By default, Firebase will give you a professional subdomain like:
 2. **Auto-Deploy**: Firebase automatically builds the new version and swaps it with the old one.
 3. **Zero Downtime**: Your app stays online while the new version is being prepared.
 
-## ⬆️ How to Push to GitHub
+## ☁️ Publishing (Step-by-Step for Free Users)
 
-To save your code to your GitHub repository:
+Since automatic workspace sync may require a paid plan, use this **Manual Method** to stay on the free plan:
 
-1. Ensure you have created the repository `Project-Flutter-Android` on your GitHub account.
-2. Run these commands in your terminal:
+### Step A: Push to GitHub
+Run these commands in your terminal:
 
 ```bash
 git add .
-git commit -m "Update for permanent hosting"
+git commit -m "Final production build"
 git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
 git push -u origin main
 ```
 *Note: When prompted for your password, use your GitHub Personal Access Token (`ghp_...`).*
 
-## ☁️ Publishing (Step-by-Step)
-
-1. **Firebase Console**: Go to the [Firebase Console](https://console.firebase.google.com/).
-2. **Enable Auth & Firestore**:
-   - Enable **Anonymous** Auth.
-   - Create a **Firestore** database in production mode.
-3. **Connect App Hosting**:
-   - In the sidebar, click **App Hosting**.
-   - Click **Get Started** and connect your GitHub repo `Project-Flutter-Android`.
-   - Firebase will handle the rest!
+### Step B: Connect to Firebase
+1. Open the [Firebase Console](https://console.firebase.google.com/).
+2. Select your project: **studio-8057266048-ca3e4**.
+3. **Enable Services**:
+   - Go to **Authentication** and enable **Anonymous**.
+   - Go to **Firestore Database** and click **Create Database**.
+4. **Deploy**:
+   - Click **App Hosting** in the left sidebar.
+   - Click **Get Started**.
+   - Select your GitHub account and the repository `Project-Flutter-Android`.
+   - Firebase will now host your app for free at your `.web.app` subdomain!
 
 ## 🛠 Features
 
