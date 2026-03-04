@@ -14,13 +14,10 @@ The application will be available at `http://localhost:9003`.
 
 ## 🌐 Keeping Your App Live (Free Subdomain)
 
-To keep your app live 24/7 and accessible to anyone in the world, we use **Firebase App Hosting**.
-
-### 1. Your Free Subdomain
 By default, Firebase will give you a professional subdomain like:
 `https://studio-8057266048-ca3e4.web.app`
 
-### 2. How to Stay Live "Forever"
+### How to Stay Live "Forever"
 1. **Push to GitHub**: Every time you run `git push`, Firebase detects the change.
 2. **Auto-Deploy**: Firebase automatically builds the new version and swaps it with the old one.
 3. **Zero Downtime**: Your app stays online while the new version is being prepared.
