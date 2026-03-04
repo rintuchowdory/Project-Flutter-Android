@@ -10,7 +10,7 @@ To see your app in action, run the following command in your terminal:
 npm run dev
 ```
 
-The application will be available at `http://localhost:9002`.
+The application will be available at `http://localhost:9003`.
 
 ### Exploring the AI (Genkit UI)
 If you want to debug the AI prompts and flows directly, run:
