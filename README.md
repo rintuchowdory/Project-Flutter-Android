@@ -23,8 +23,8 @@ This opens the Genkit developer UI where you can test different inputs for your 
 
 To save your code to GitHub for the first time:
 
-1. Create a new repository on GitHub (e.g., `ai-textforge`).
-2. Run these commands:
+1. Create a new repository on GitHub named `ai-textforge`.
+2. Run these commands in your terminal:
 
 ```bash
 git add .
@@ -33,6 +33,7 @@ git branch -M main
 git remote add origin https://github.com/rintuchowdory/ai-textforge.git
 git push -u origin main
 ```
+*Note: Use your GitHub Token as the password if prompted.*
 
 ## 🛠 Features
 
