@@ -12,12 +12,18 @@ npm run dev
 
 The application will be available at `http://localhost:9003`.
 
-### Exploring the AI (Genkit UI)
-If you want to debug the AI prompts and flows directly, run:
-```bash
-npm run genkit:dev
-```
-This opens the Genkit developer UI where you can test different inputs for your text generation logic.
+## 🌐 Keeping Your App Live (Free Subdomain)
+
+To keep your app live 24/7 and accessible to anyone in the world, we use **Firebase App Hosting**.
+
+### 1. Your Free Subdomain
+By default, Firebase will give you a professional subdomain like:
+`https://studio-8057266048-ca3e4.web.app`
+
+### 2. How to Stay Live "Forever"
+1. **Push to GitHub**: Every time you run `git push`, Firebase detects the change.
+2. **Auto-Deploy**: Firebase automatically builds the new version and swaps it with the old one.
+3. **Zero Downtime**: Your app stays online while the new version is being prepared.
 
 ## ⬆️ How to Push to GitHub
 
@@ -28,23 +34,22 @@ To save your code to your GitHub repository:
 
 ```bash
 git add .
-git commit -m "Complete AI TextForge implementation"
+git commit -m "Update for permanent hosting"
 git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
 git push -u origin main
 ```
 *Note: When prompted for your password, use your GitHub Personal Access Token (`ghp_...`).*
 
-## ☁️ Publishing (The Free Method)
+## ☁️ Publishing (Step-by-Step)
 
-To publish your app for free using the Firebase Spark plan:
-
-1. **Enable Authentication**: Go to the [Firebase Console](https://console.firebase.google.com/), navigate to **Authentication**, and enable the **Anonymous** provider.
-2. **Enable Firestore**: Go to **Cloud Firestore** in the console and click **Create Database**. Start in "Production Mode" but ensure your security rules allow the path `/users/{userId}/ai_interactions/{id}` (these rules are already in your `firestore.rules` file!).
-3. **Deploy with App Hosting**:
-   - Push your code to the GitHub repository using the commands above.
-   - In the Firebase Console, go to **App Hosting**.
-   - Click **Get Started** and connect your GitHub repo.
-   - Firebase will handle the build and deployment automatically.
+1. **Firebase Console**: Go to the [Firebase Console](https://console.firebase.google.com/).
+2. **Enable Auth & Firestore**:
+   - Enable **Anonymous** Auth.
+   - Create a **Firestore** database in production mode.
+3. **Connect App Hosting**:
+   - In the sidebar, click **App Hosting**.
+   - Click **Get Started** and connect your GitHub repo `Project-Flutter-Android`.
+   - Firebase will handle the rest!
 
 ## 🛠 Features
 

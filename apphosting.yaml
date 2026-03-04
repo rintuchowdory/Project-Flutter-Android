@@ -5,3 +5,6 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
+  # Next.js Server Actions and AI generation can take some time.
+  # We set a generous timeout to ensure the AI has time to respond.
+  timeoutSeconds: 60
