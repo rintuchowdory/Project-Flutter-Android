@@ -21,18 +21,18 @@ This opens the Genkit developer UI where you can test different inputs for your 
 
 ## ⬆️ How to Push to GitHub
 
-To save your code to GitHub and prepare for deployment:
+To save your code to your GitHub repository:
 
-1. Create a new repository on GitHub named `ai-textforge`.
+1. Ensure you have created the repository `Project-Flutter-Android` on your GitHub account.
 2. Run these commands in your terminal:
 
 ```bash
 git add .
 git commit -m "Complete AI TextForge implementation"
-git remote add origin https://github.com/rintuchowdory/ai-textforge.git
+git remote add origin https://github.com/rintuchowdory/Project-Flutter-Android.git
 git push -u origin main
 ```
-*Note: Use your GitHub Token as the password when prompted.*
+*Note: When prompted for your password, use your GitHub Personal Access Token (`ghp_...`).*
 
 ## ☁️ Publishing (The Free Method)
 
@@ -41,7 +41,7 @@ To publish your app for free using the Firebase Spark plan:
 1. **Enable Authentication**: Go to the [Firebase Console](https://console.firebase.google.com/), navigate to **Authentication**, and enable the **Anonymous** provider.
 2. **Enable Firestore**: Go to **Cloud Firestore** in the console and click **Create Database**. Start in "Production Mode" but ensure your security rules allow the path `/users/{userId}/ai_interactions/{id}` (these rules are already in your `firestore.rules` file!).
 3. **Deploy with App Hosting**:
-   - Push your code to a GitHub repository using the commands above.
+   - Push your code to the GitHub repository using the commands above.
    - In the Firebase Console, go to **App Hosting**.
    - Click **Get Started** and connect your GitHub repo.
    - Firebase will handle the build and deployment automatically.
