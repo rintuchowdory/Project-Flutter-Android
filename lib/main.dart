@@ -27,6 +27,11 @@ class ThemeProvider with ChangeNotifier {
         _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
+
+  void resetTheme() {
+    _themeMode = ThemeMode.light;
+    notifyListeners();
+  }
 }
 
 final GoRouter _router = GoRouter(
@@ -143,7 +148,8 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 48),
                 ElevatedButton.icon(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Not yet implemented')));
+                    context.read<ThemeProvider>().resetTheme();
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('App state restored to default.')));
                   },
                   icon: const Icon(Icons.restore),
                   label: const Text('Restore Original App'),
