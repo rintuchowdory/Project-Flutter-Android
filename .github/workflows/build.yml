@@ -19,10 +19,13 @@ jobs:
         with:
           flutter-version: '3.38.4'
           channel: 'stable'
+          cache: false
 
       - name: Install dependencies
         run: |
           rm -f pubspec.lock
+          rm -rf .dart_tool/
+          flutter pub cache clean --force
           flutter pub get
 
       - name: Build APK
