@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/firebase_options.dart';
+import 'package:myapp/settings_screen.dart';
 import 'package:myapp/text_generation_screen.dart';
 
 void main() async {
@@ -46,6 +47,12 @@ final GoRouter _router = GoRouter(
           path: 'text-generation',
           builder: (BuildContext context, GoRouterState state) {
             return const TextGenerationScreen();
+          },
+        ),
+        GoRoute(
+          path: 'settings',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SettingsScreen();
           },
         ),
       ],
@@ -118,6 +125,11 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () => context.read<ThemeProvider>().toggleTheme(),
               );
             },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => context.go('/settings'),
           ),
         ],
       ),

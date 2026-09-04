@@ -45,3 +45,23 @@ app.*.map.json
 /android/app/release
 .env
 .firebase/
+
+# Web build output (deploy from build/web, never commit it)
+/build/
+/main.dart.js
+/canvaskit/
+/flutter.js
+/flutter_bootstrap.js
+/flutter_service_worker.js
+/index.html
+/manifest.json
+/version.json
+/favicon.png
+/icons/
+/assets/AssetManifest*
+/assets/FontManifest.json
+/assets/NOTICES
+/assets/assets/
+/assets/fonts/
+/assets/packages/
+/assets/shaders/

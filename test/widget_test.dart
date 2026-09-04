@@ -1,30 +1,52 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Smoke tests for the app's home screen and theme provider.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import 'package:myapp/main.dart';
 
+Widget _wrapApp() {
+  return ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),
+  );
+}
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Home screen renders title and navigation',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(_wrapApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Firebase App'), findsWidgets);
+    expect(find.text('Text Generation'), findsOneWidget);
+    expect(find.text('Restore Original App'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Theme toggles between light and dark mode',
+      (WidgetTester tester) async {
+    final themeProvider = ThemeProvider();
+    expect(themeProvider.themeMode, ThemeMode.light);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    themeProvider.toggleTheme();
+    expect(themeProvider.themeMode, ThemeMode.dark);
+
+    themeProvider.toggleTheme();
+    expect(themeProvider.themeMode, ThemeMode.light);
+
+    themeProvider.toggleTheme();
+    themeProvider.resetTheme();
+    expect(themeProvider.themeMode, ThemeMode.light);
+  });
+
+  testWidgets('Tapping Text Generation navigates to the generation screen',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(_wrapApp());
+
+    await tester.tap(find.text('Text Generation'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Generate Text'), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
   });
 }
