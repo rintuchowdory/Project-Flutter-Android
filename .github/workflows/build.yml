@@ -25,11 +25,7 @@ jobs:
           cache: false
 
       - name: Install dependencies
-        run: |
-          rm -f pubspec.lock
-          rm -rf .dart_tool/
-          flutter pub cache clean --force
-          flutter pub get
+        run: flutter pub get
 
       - name: Build APK
         run: flutter build apk --release

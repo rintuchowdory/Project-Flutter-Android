@@ -32,10 +32,7 @@ jobs:
           cache: false
 
       - name: Install dependencies
-        run: |
-          rm -f pubspec.lock
-          rm -rf .dart_tool/
-          flutter pub get
+        run: flutter pub get
 
       - name: Build web
         run: flutter build web --release --base-href /Project-Flutter-Android/
