@@ -26,16 +26,11 @@ jobs:
       - name: Build web
         run: flutter build web --release --dart-define=GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
 
-      - name: Write Firebase credentials
-        run: echo "$FIREBASE_SERVICE_ACCOUNT" > "$HOME/sa-creds.json"
+      - name: Deploy to Firebase Hosting
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/sa-creds.json"
+          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa-creds.json" \
+            npx -y firebase-tools@latest deploy --only hosting --project reddit-clone-r-f75ce --non-interactive
+          rm -f "$RUNNER_TEMP/sa-creds.json"
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
-      - name: Deploy to Firebase Hosting
-        run: npx -y firebase-tools@latest deploy --only hosting --project reddit-clone-r-f75ce --non-interactive
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/../sa-creds.json
-
-      - name: Clean up credentials
-        if: always()
-        run: rm -f "$HOME/sa-creds.json"
